@@ -28,15 +28,17 @@ jobs:
         run: |
           sed -i 's/\!\[Webpage Screenshot\].*/\!\[Webpage Screenshot\](screenshot.png)/' README.md
 
+      - name: Set Git User Identity
+        run: |
+          git config --global user.name 'Your CI/CD'
+          git config --global user.email 'ci-cd@example.com'
+
       - name: Check for Changes
         run: |
           git diff --quiet || git commit -am "Update screenshot [skip ci]"
 
       - name: Commit and Push Updated Screenshot
         run: |
-          git config --global user.name 'Your CI/CD'
-          git config --global user.email 'ci-cd@example.com'
-
           # Set up the Git remote with the token
           git remote add origin_with_token https://$GH_TOKEN@github.com/cassia102/Alpaca-Image-Generator.git
-          git push origin_with_token main || echo "Failed to push any changes"
+          git push origin_with_token main || echo "Failed to push changes"
