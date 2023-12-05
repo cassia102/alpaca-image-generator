@@ -29,12 +29,11 @@ jobs:
           sed -i 's/\!\[Webpage Screenshot\].*/\!\[Webpage Screenshot\](screenshot.png)/' README.md
 
       - name: Commit and Push Updated Screenshot
-        run: |
-          git config --global user.name 'Your CI/CD'
-          git config --global user.email 'ci-cd@example.com'
-          git add screenshot.png README.md
-          git commit -m "Update screenshot [skip ci]"
+          run: |
+            git config --global user.name 'Your CI/CD'
+            git config --global user.email 'ci-cd@example.com'
+            git add screenshot.png README.md
+            git commit -m "Update screenshot [skip ci]"
 
-          # Use the GitHub token as a secret
-          git remote add origin_with_token https://$GH_TOKEN@github.com/cassia102/Alpaca-Image-Generator.git
-          git push origin_with_token main
+            git remote add origin_with_token https://$GH_TOKEN@github.com/cassia102/Alpaca-Image-Generator.git
+            git push origin_with_token main
