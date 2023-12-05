@@ -1,0 +1,37 @@
+name: Update Screenshot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-screenshot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Puppeteer Script
+        run: node scripts/puppeteer-script.js
+
+      - name: Update README
+        run: |
+          sed -i 's/\!\[Webpage Screenshot\].*/\!\[Webpage Screenshot\](screenshot.png)/' README.md
+
+      - name: Commit and Push Updated Screenshot
+        run: |
+          git config --global user.name 'Your CI/CD'
+          git config --global user.email 'ci-cd@example.com'
+          git add screenshot.png README.md
+          git commit -m "Update screenshot [skip ci]"
+          git push

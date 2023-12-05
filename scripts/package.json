@@ -1,0 +1,11 @@
+{
+    "name": "screenshot-scripts",
+    "version": "1.0.0",
+    "scripts": {
+      "install": "npm install",
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "puppeteer": "^15.1.0"
+    }
+  }
