@@ -20,10 +20,10 @@ GitHub Workflow: Generates an updated screenshot to the readme every time the re
 
 # Getting Started
 
-Clone the repository
-Install dependencies: npm install
-Start the development server: npm start
-Open http://localhost:3000 in your browser.
+- Clone the repository
+- Install dependencies: npm install
+- Start the development server: npm start
+- Open http://localhost:3000 in your browser.
 ```
 alpaca-image-generator
 ├─ .fontello-session
