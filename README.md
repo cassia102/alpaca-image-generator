@@ -16,6 +16,7 @@ Website screenshot created using Github workflows:
 React.js: Front-end library for building user interfaces
 SASS: Preprocessor scripting language that is interpreted or compiled into CSS
 Alpaca API: Stores the data for the Alpacas
+GitHub Workflow: Generates an updated screenshot to the readme every time the repo is pushed to the main branch
 
 # Getting Started
 
