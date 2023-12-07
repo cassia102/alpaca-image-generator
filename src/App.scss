@@ -44,12 +44,6 @@
                     border-radius: 25px;
                 }
 
-                .selected {
-                    background: #24509d;
-                    opacity: 1;
-                    color: #fff;
-                }
-
                 .accessories, .eyes {
                     z-index: 99;
                 }
@@ -96,6 +90,12 @@
                     font-size: 18px;
                     cursor: pointer;
                     margin: 0 5px 5px 0;
+
+                    &.selected {
+                        background: #24509d;
+                        opacity: 1;
+                        color: #fff;
+                    }
                 }
             }
 
