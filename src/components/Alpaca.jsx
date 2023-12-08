@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
+import Toggle from 'react-toggle';
+import "react-toggle/style.css"
 
 //Components
 import Accessorize from './Accessorize';
@@ -28,6 +30,9 @@ const Alpaca = () => {
     accessories: null,
   });
   const [currentFeature, setCurrentFeature] = useState(config[0]);
+  const [isDark, setIsDark] = useState(false);
+
+  console.log(config)
 
   const changeImage = (feature, attribute) => {
     const { directory: dir } = feature;
@@ -88,11 +93,27 @@ const Alpaca = () => {
     setConfig(configClone);
   };
 
+  useEffect(() => {
+    if (isDark) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [isDark]);
+
   const alpacaAttr = features;
 
   return (
-    <div className='alpaca-container'>
-      <Header />
+    <div className="alpaca-container">
+      <div className="header">
+        <Header />
+        <Toggle
+          checked={isDark}
+          onChange={({ target }) => setIsDark(target.checked)}
+          icons={{ checked: "🌙", unchecked: "🔆" }}
+          aria-label="Dark mode toggle"
+        />
+      </div>
       <div className='inner'>
         <div className='left'>
           <div className='alpaca' id='alpaca'>
@@ -117,6 +138,7 @@ const Alpaca = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 
