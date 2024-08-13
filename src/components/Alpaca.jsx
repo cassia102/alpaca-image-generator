@@ -69,9 +69,12 @@ const Alpaca = () => {
     const renderAlpaca = () => {
       config.forEach((feature) => {
         const attribute = feature.items.find((at) => at.filename === 'default');
-        changeImage(feature, attribute);
+        if (attribute) {
+          changeImage(feature, attribute);
+        }
       });
     };
+  
     renderAlpaca();
   
     if (isDark) {
@@ -79,7 +82,9 @@ const Alpaca = () => {
     } else {
       document.body.classList.remove('dark');
     }
-  }, [config, changeImage, isDark]);
+  
+    // Only run when `isDark` changes or the component mounts/unmounts
+  }, [isDark]); 
 
   const setRandomItems = () => {
     const configClone = [...config];
