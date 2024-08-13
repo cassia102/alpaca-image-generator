@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
 import Toggle from 'react-toggle';
@@ -32,7 +32,7 @@ const Alpaca = () => {
   const [currentFeature, setCurrentFeature] = useState(config[0]);
   const [isDark, setIsDark] = useState(false);
 
-  const changeImage = (feature, attribute) => {
+  const changeImage = useCallback((feature, attribute) => {
     const { directory: dir } = feature;
     const { filename: bgImage } = attribute;
 
@@ -46,7 +46,7 @@ const Alpaca = () => {
     getImage(dir, bgImage, (image) => {
       setFeatures((prevFeatures) => ({ ...prevFeatures, [dir]: image }));
     });
-  };
+  }, [config]);
 
   const setFeatureItem = (feature) => {
     setConfig((prevConfig) =>
