@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { toPng } from 'html-to-image';
 import download from 'downloadjs';
 import Toggle from 'react-toggle';
@@ -31,6 +31,8 @@ const Alpaca = () => {
   });
   const [currentFeature, setCurrentFeature] = useState(config[0]);
   const [isDark, setIsDark] = useState(false);
+
+  const initialRender = useRef(true);
 
   const changeImage = useCallback((feature, attribute) => {
     const { directory: dir } = feature;
@@ -66,25 +68,27 @@ const Alpaca = () => {
   };
 
   useEffect(() => {
-    const renderAlpaca = () => {
-      config.forEach((feature) => {
-        const attribute = feature.items.find((at) => at.filename === 'default');
-        if (attribute) {
-          changeImage(feature, attribute);
-        }
-      });
-    };
-  
-    renderAlpaca();
-  
+    if (initialRender.current) {
+      const renderAlpaca = () => {
+        config.forEach((feature) => {
+          const attribute = feature.items.find((at) => at.filename === 'default');
+          if (attribute) {
+            changeImage(feature, attribute);
+          }
+        });
+      };
+      renderAlpaca();
+      initialRender.current = false;
+    }
+  }, [changeImage]);
+
+  useEffect(() => {
     if (isDark) {
       document.body.classList.add('dark');
     } else {
       document.body.classList.remove('dark');
     }
-  
-    // Only run when `isDark` changes or the component mounts/unmounts
-  }, [isDark]); 
+  }, [isDark]);
 
   const setRandomItems = () => {
     const configClone = [...config];
