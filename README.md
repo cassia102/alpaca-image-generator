@@ -2,8 +2,8 @@
 
 Generate unique alpaca images and share with your friends.
 
-Website screenshot created using Github workflows:
-![Webpage Screenshot](screenshot.png)
+You can view the app here:
+https://cassia-alpaca-generator.netlify.app/ 
 
 # Features 
 
