@@ -80,7 +80,7 @@ const Alpaca = () => {
       renderAlpaca();
       initialRender.current = false;
     }
-  }, [changeImage]);
+  }, [changeImage, config]);
 
   useEffect(() => {
     if (isDark) {
