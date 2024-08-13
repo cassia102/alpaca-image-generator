@@ -32,8 +32,6 @@ const Alpaca = () => {
   const [currentFeature, setCurrentFeature] = useState(config[0]);
   const [isDark, setIsDark] = useState(false);
 
-  console.log(config)
-
   const changeImage = (feature, attribute) => {
     const { directory: dir } = feature;
     const { filename: bgImage } = attribute;
@@ -75,7 +73,13 @@ const Alpaca = () => {
       });
     };
     renderAlpaca();
-  }, []);
+  
+    if (isDark) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [config, changeImage, isDark]);
 
   const setRandomItems = () => {
     const configClone = [...config];
@@ -92,14 +96,6 @@ const Alpaca = () => {
 
     setConfig(configClone);
   };
-
-  useEffect(() => {
-    if (isDark) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
-  }, [isDark]);
 
   const alpacaAttr = features;
 
